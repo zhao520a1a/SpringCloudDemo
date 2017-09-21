@@ -1,0 +1,12 @@
+server:
+  port: 8765
+
+spring:
+  profiles: peer1
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8766/eureka/   #向对方请求
+

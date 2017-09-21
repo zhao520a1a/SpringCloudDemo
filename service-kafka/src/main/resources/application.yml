@@ -1,0 +1,13 @@
+
+
+
+##############kafka config start ###########################
+kafka:
+  batchSize: 1   # the size of producer message by batch
+  brokers: localhost:9092
+
+  zkServers: localhost:2181
+  defaultTopic: topic1
+  nThreads: 50  # the number of thread for  kafka consumer
+  enabled: true
+###############kafka config end #########################

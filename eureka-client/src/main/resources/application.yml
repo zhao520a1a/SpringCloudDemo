@@ -1,0 +1,10 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+server:
+  port: 8801
+
+spring:
+  application:
+    name: service-client   #重要：在eureka服务器端的标识，以后的服务与服务之间相互调用一般都是根据这个name
