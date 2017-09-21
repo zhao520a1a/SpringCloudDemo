@@ -9,11 +9,13 @@
 	<packaging>jar</packaging>
 
 	<name>service-feign</name>
-	<description>spring cloud有两种服务调用方式，一种是ribbon+restTemplate，另一种是feign。该module是基于feign。
+	<description>spring cloud有两种服务调用方式，一种是ribbon+restTemplate，另一种是feign。
+		该module是基于feign。
 		@EnableDiscoveryClient
 		@EnableFeignClients
 		@FeignClient
 		注：Feign 采用的是基于接口的注解; Feign内部整合了ribbon;
+		通过在接口上加注解：@FeignClient(value = "eureka-client")来调用指定名称的服务
 
 		引入Hystrix断路器：
 		feign.hystrix.enabled=true 开启Hystrix

@@ -10,8 +10,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 public class ServiceZullApplication {
 
-	//http://localhost:8890/api-a/testRibbon?name=Golden1&token=22
-	//http://localhost:8890/api-b/testFeign?name=Golden1&token=22
+
 	public static void main(String[] args) {
 		SpringApplication.run(ServiceZullApplication.class, args);
 	}

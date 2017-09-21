@@ -16,3 +16,8 @@ zuul:
             path: /api-b/**
             serviceId: service-feign  #  以/api-b/开头的请求都转发给service-feign服务；
 
+# 测试转发功能：
+# http://localhost:8890/api-a/testRibbon?name=Golden1&token=22
+# http://localhost:8890/api-b/testFeign?name=Golden1&token=22
+# 测过滤功能:
+# http://localhost:8890/api-b/testFeign?name=Golden1

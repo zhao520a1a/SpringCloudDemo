@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 //value为服务客户端名称，指定Hystrix的fallback类
-@FeignClient(value = "service-client", fallback = SchedualServiceHystric.class)
+@FeignClient(value = "eureka-client", fallback = SchedualServiceHystric.class)
 public interface SchedualService {
 
     @GetMapping(value = "/testPort")

@@ -17,6 +17,6 @@ public class HelloController {
 
     @RequestMapping(value = "/testFeign")
     public String testFeign(@RequestParam String name){
-        return schedualService.sayHiFromClientOne(name);
+        return "Service-Feign 调用 eureka-client :" + schedualService.sayHiFromClientOne(name);
     }
 }

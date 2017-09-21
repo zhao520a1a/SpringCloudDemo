@@ -19,7 +19,7 @@ public class SchedualService {
     @HystrixCommand(fallbackMethod = "fallbackError")
     public String getPortFromClientOne(String name){
         //service-client为服务客户端名称，会自动被相应的url替换
-        return restTemplate.getForObject("http://service-client/testPort?name=" + name, String.class);
+        return "Service-Ribbon 调用 eureka-client : " +   restTemplate.getForObject("http://eureka-client/testPort?name=" + name, String.class);
     }
 
     public String fallbackError(String name) {

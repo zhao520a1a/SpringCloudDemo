@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author 赵金鑫
  * @date 2017年08月28日
+ *
+ * 过滤器
  */
 @Slf4j
 @Component
@@ -51,15 +53,16 @@ public class MyFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
-        Object accessToken = request.getParameter("token");
+        Object accessToken = request.getParameter("token");  //获取请求中的token参数，判空
         if(accessToken == null) {
             log.warn("token is empty");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
             try {
                 ctx.getResponse().getWriter().write("token is empty");
-            }catch (Exception e){}
-
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return null;
         }
         log.info("ok");

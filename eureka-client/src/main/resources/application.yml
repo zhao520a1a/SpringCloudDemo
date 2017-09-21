@@ -7,4 +7,4 @@ server:
 
 spring:
   application:
-    name: service-client   #重要：在eureka服务器端的标识，以后的服务与服务之间相互调用一般都是根据这个name
+    name: eureka-client   #重要：该name是在eureka服务器端的标识，以后的服务与服务之间相互调用一般都是根据这个name
