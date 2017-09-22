@@ -9,7 +9,9 @@
 	<packaging>jar</packaging>
 
 	<name>config-client</name>
-	<description>搭建config-client，从配置中心读取的foo变量的值</description>
+	<description>搭建config-client
+		在项目配置文件bootstrap.yml中配置连接ClientServer的信息
+		从配置中心读取的指定属性的值</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

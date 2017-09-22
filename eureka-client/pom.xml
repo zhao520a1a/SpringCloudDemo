@@ -11,7 +11,11 @@
 	<name>eureka-client</name>
 	<description>建立Eureka服务器的客户端
 		@EnableEurekaClient
-		配置信息</description>
+		配置信息
+
+		引入Zipkin：可以被追踪到调用其他服务的链路
+		在其配置文件，通过spring.zipkin.base-url指定zipkin server的地址
+	</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -32,6 +36,14 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
+
+
+		<!--追踪调用服务 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

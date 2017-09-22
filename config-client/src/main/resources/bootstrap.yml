@@ -1,23 +1,25 @@
-#config client端却要使用bootstrap.yml或bootstrap.properties
-#因为bootstrap.properties的加载是先于application.properties的
+#config client端必须要使用bootstrap.yml或bootstrap.properties
+#注：bootstrap.properties的加载是先于application.properties的
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8888/eureka/
 spring.application.name: config-client
+
 server:
   port: 9998
 spring:
   cloud:
     config:
-      label: master
-      profile: dev
-      #读取配置文件不再写ip地址，而是服务名，这时如果配置服务部署多份，通过负载均衡，从而高可用。
-#      uri: http://localhost:9999/   # config-service的url地址
+      label: master  #指明远程仓库的分支
+      profile: dev #表示开发环境配置文件  prod表示生产环境的配置文件
+#  访问配置服务器方式一：url地址
+#     uri: http://localhost:9999/   # config-service的url地址
+#  访问配置服务器方式二：服务名
       discovery:
-          enabled: true
-          service-id: config-server
-
+          enabled: true  #从配置中心读取文件
+          service-id: config-server #服务名
+# 读取配置文件不建议写ip地址，而是服务名，这时如果配置服务部署多份，通过负载均衡，从而高可用。
 
 
 

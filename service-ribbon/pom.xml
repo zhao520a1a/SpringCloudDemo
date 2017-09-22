@@ -23,6 +23,9 @@
 		@EnableHystrixDashboard
 
 
+		引入Zipkin：可以被追踪到调用其他服务的链路
+		在其配置文件，通过spring.zipkin.base-url指定zipkin server的地址
+
 	</description>
 
 	<parent>
@@ -41,6 +44,13 @@
 
 	<dependencies>
 
+		<!--追踪调用服务 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+
+
 		<!--引入Hystrix断路器-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -55,6 +65,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

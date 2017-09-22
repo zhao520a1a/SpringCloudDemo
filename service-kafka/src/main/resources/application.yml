@@ -1,5 +1,5 @@
-
-
+server:
+  port: 7777
 
 ##############kafka config start ###########################
 kafka:

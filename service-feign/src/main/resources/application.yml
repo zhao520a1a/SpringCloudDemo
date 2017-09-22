@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: service-feign
+  zipkin:
+    base-url: http://localhost:10000
 
 eureka:
   client:
@@ -11,6 +13,8 @@ eureka:
       defaultZone: http://localhost:8888/eureka/
 
 feign.hystrix.enabled: true
+
+
 
 
 

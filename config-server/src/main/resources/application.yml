@@ -1,22 +1,37 @@
+#注册服务
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8888/eureka/
 spring.application.name: config-server
 
+
 server:
   port: 9999
+
+
+#配置远程配置文件地址
 spring:
   cloud:
     config:
       server:
         git:  # 如果git仓库为公开仓库，可以不填写用户名和密码，如果是私有仓库需要填写，本例子是公开仓库，放心使用。
-          #远程仓库https://github.com/forezp/SpringcloudConfig/中在respo文件夹下有名为config-client-dev.properties的文件，
-          #其中包含有一个属性：golden = 小星星， 可以启动程序：访问http://localhost:9999/foo/dev
+          #远程仓库 https://github.com/zhao520a1a/SpringCloudDemo.git 中在testFolder文件夹下有生产与开发环境的配置文件，
           uri: https://github.com/zhao520a1a/SpringCloudDemo.git
-          searchPaths: testConfigByGit
+          searchPaths: testFolder
           username:
           password:
-      label: master   #配置仓库的分支
+      label: master  #配置仓库的分支
 
-
+#    查看配置文件内容：
+#    yml格式，http://localhost:9999/config-client-dev.yml
+#    properties格式，http://localhost:9999/config-client-dev.properties
+#     /{application}/{profile}[/{label}]
+#    获取config-client-dev.profile文件中spring.profiles.name参数的值，http://localhost:9999/config-client-dev/spring.profiles.name/master
+#    备注：
+#    {application}映射到Config客户端的spring.application.name属性
+#    {profile}映射到Config客户端的spring.profiles.active属性，可以用来区分环境
+#    {label}映射到Git服务器的commit id, 分支名称或者tag，默认值为master
+#    例如：访问***-dev.properties配置文件的spring.profiles.name的值：
+#          http://localhost:9999/spring.profiles.name/dev
+#
