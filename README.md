@@ -1,7 +1,8 @@
 # SpringCloudDemo
  
-eureka-server：服务的注册与发现（Eureka）
+eureka-server：高可用服务的注册与发现（Eureka）  2个服务中心，相互感应，对等关系
 http://localhost:8888
+http://localhost:8889
 
 service-zuul：路由网关(zuul)-转发与过滤
 http://localhost:8890/api-a/testRibbon?name=Golden1&token=22
