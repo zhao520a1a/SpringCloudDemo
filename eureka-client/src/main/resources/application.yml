@@ -2,7 +2,8 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8888/eureka/
+      defaultZone: http://127.0.0.1:8888/eureka/            #本地运行
+#      defaultZone: http://eureka-server:8888/eureka/      #docker环境运行，用docker --link来手动指定eureka-server的具体地址
 
 server:
   port: 8801
@@ -10,5 +11,5 @@ server:
 spring:
   application:
     name: eureka-client   #重要：该name是在eureka服务器端的标识，以后的服务与服务之间相互调用一般都是根据这个name
-  zipkin:
-    base-url: http://localhost:10000   #跟踪服务服务器的地址
+#  zipkin:
+#    base-url: http://localhost:10000   #跟踪服务服务器的地址

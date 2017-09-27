@@ -4,14 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>eureka-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>eureka-server</name>
 	<description> 建立Eureka服务器
 		@EnableEurekaServer
-		配置信息
+		配置信息：配置两台服务器，使其高可用
+
+		后期采用Docker进行打包：添加maven插件，编写Dockerfile文件，maven clean package docker:build
 	</description>
 
 	<parent>
@@ -26,6 +28,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Dalston.SR3</spring-cloud.version>
+		<docker.image.prefix>golden</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -59,6 +62,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- 用maven插件方式构建docker镜像 start -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.3</version>
+				<configuration>
+					<!--指定了镜像的名字-->
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<!--resources是指那些需要和 Dockerfile 放在一起，在构建镜像时使用的文件，一般应用 jar 包需要纳入。-->
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+			<!-- 用maven插件方式构建docker镜像 end -->
 		</plugins>
 	</build>
 

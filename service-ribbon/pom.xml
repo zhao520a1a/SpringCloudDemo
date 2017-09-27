@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>service-ribbon</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -17,11 +17,14 @@
 		通过restTemplate.getForObject("http://eureka-client/testPort?name=" + name, String.class); 来调用指定名称的服务
 
 		引入Hystrix断路器：
-		使用@EnableHystrix  或者 @EnableCircuitBreaker注解开启断路器功能：
-		@HystrixCommand(fallbackMethod = " ")
-		使用Hystrix仪表盘：http://localhost:port/hystrix  http://localhost:8762/hystrix.stream
-		@EnableHystrixDashboard
+		使用@EnableHystrix  或者 @EnableCircuitBreaker 开启断路器
+		@HystrixCommand(fallbackMethod = " ") 声明断路点
 
+		使用Hystrix仪表盘：
+		@EnableHystrixDashboard
+		调用：
+		打开监控服务的服务网页http://IP:port/hystrix,输入监控流http://IP:port/hystrix.stream,能看到该服务的Hystrix监控的页面
+		查看、下载Hystrix流中的数据：http://IP:port/hystrix.stream
 
 		引入Zipkin：可以被追踪到调用其他服务的链路
 		在其配置文件，通过spring.zipkin.base-url指定zipkin server的地址

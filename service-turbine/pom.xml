@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>service-turbine</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -12,8 +12,11 @@
 	<description>
 		Hystrix Turbine将每个服务Hystrix Dashboard数据进行了整合,实现Hystrix的聚合监控。
 		@EnableTurbine，开启turbine，
-		@EnableTurbine注解包含了
-		@EnableDiscoveryClient注解，即开启了注册服务。
+		注：@EnableTurbine注解包含了 @EnableDiscoveryClient注解，即开启了注册服务。
+
+		调用：
+		打开监控服务的服务网页http://IP:service_port/hystrix后，输入监控流http://IP:turbine_port/turbine.stream,能看到聚合监控的页面
+		查看、下载Hystrix流中的数据：http://IP:turbine_port/turbine.stream
 
 	</description>
 
@@ -32,6 +35,7 @@
 	</properties>
 
 	<dependencies>
+		<!--Hystrix Turbine-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-turbine</artifactId>

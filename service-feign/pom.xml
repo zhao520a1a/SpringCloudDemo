@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>service-feign</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -19,10 +19,13 @@
 
 		引入Hystrix断路器：
 		feign.hystrix.enabled=true 开启Hystrix
-		在接口的注解中加上fallback的指定类
-		使用Hystrix仪表盘：http://localhost:port/hystrix    http://localhost:8762/hystrix.stream
-		@EnableCircuitBreaker
+		在接口的注解中加上fallback的指定类 声明断路点
+
+		使用Hystrix仪表盘：
 		@EnableHystrixDashboard
+		调用：
+		打开监控服务的服务网页http://IP:port/hystrix,输入监控流http://IP:port/hystrix.stream,能看到该服务的Hystrix监控的页面
+		查看、下载Hystrix流中的数据：http://IP:port/hystrix.stream
 
 		引入Zipkin：可以被追踪到调用其他服务的链路
 		在其配置文件，通过spring.zipkin.base-url指定zipkin server的地址
