@@ -1,0 +1,28 @@
+#通过up命令 + build标签，编排镜像的构建并运行 : docker-compose -f docker-compose-dev.yml up
+# docker run --name eureka-server【容器名字】 -p 8888:8888  镜像名
+# eureka-client中部署使用link参数链接注册服务器： docker run --link eureka-server【要链接的容器名字】:eureka-server 【配置中写的注册服务器的地址】 -p 8801:8801  镜像名
+
+#待解决：：问题记录：发现用 docker-compose的build 和 mvn插件的build , 达成镜像不同；mvn插件可以link上Eureka-Server,但是docker-compose不行；
+
+version: '3'
+services:
+  eureka-client:
+    build: eureka-client
+    ports:
+      - 8801:8801
+    container_name: eureka-client-1
+    links:
+      - eureka-server:eureka-server
+    depends_on:
+      - eureka-server
+
+
+  eureka-server:
+    build: eureka-server
+    ports:
+      - 8888:8888
+    container_name: eureka-server
+
+
+
+

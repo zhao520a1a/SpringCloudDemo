@@ -71,7 +71,11 @@
 				<configuration>
 					<!--指定了镜像的名字-->
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+						<imageTag>latest</imageTag>
+					</imageTags>
+					<dockerDirectory>./</dockerDirectory>
 					<resources>
 						<!--resources是指那些需要和 Dockerfile 放在一起，在构建镜像时使用的文件，一般应用 jar 包需要纳入。-->
 						<resource>
@@ -81,6 +85,15 @@
 						</resource>
 					</resources>
 				</configuration>
+				<executions>
+					<execution>   <!--在clean时绑定了清除镜像事件-->
+						<id>clean-image</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>removeImage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<!-- 用maven插件方式构建docker镜像 end -->
 		</plugins>

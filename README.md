@@ -1,4 +1,7 @@
 # SpringCloudDemo
+
+consul-miya：它是一个提供服务发现和配置的工具（Consul）   
+http://localhost:8500
  
 eureka-server：高可用服务的注册与发现（Eureka）  2个服务中心，相互感应，对等关系
 http://localhost:8888

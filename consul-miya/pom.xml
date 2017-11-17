@@ -4,25 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>eureka-client</artifactId>
+	<artifactId>consul-miya</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>eureka-client</name>
-	<description>建立Eureka服务器的客户端
-		@EnableEurekaClient
-		配置信息
+	<name>consul-miya</name>
+	<description>
+		spring cloud consul 组件，它是一个提供服务发现和配置的工具。consul具有分布式、高可用、高扩展性。
+		简言之，它是spring Eureka, Spring cloud Config, Spring cloud Bus的整合
 
-		引入Zipkin：可以被追踪到调用其他服务的链路
-		在其配置文件，通过spring.zipkin.base-url指定zipkin server的地址
-
-		后期采用Docker进行打包：添加maven插件，编写Dockerfile文件，maven clean package docker:build
+		@EnableDiscoveryClient
+		配置文件application.yml指定consul服务的端口
+		调用： 本地开启consul服务，访问 localhost:8500
 	</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>1.5.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -31,23 +30,23 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Dalston.SR3</spring-cloud.version>
-		<docker.image.prefix>golden</docker.image.prefix>
 	</properties>
 
 	<dependencies>
+		<!--consul-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
 		</dependency>
-
-
-		<!--追踪调用服务 -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zipkin</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -73,27 +72,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
-			<!-- 用maven插件方式构建docker镜像 start -->
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.3</version>
-				<configuration>
-					<!--指定了镜像的名字-->
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>./</dockerDirectory>  <!--指定 Dockerfile 的位置-->
-					<resources>
-						<!--resources是指那些需要和 Dockerfile 放在一起，在构建镜像时使用的文件，一般应用 jar 包需要纳入。-->
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
-				</configuration>
-			</plugin>
-			<!-- 用maven插件方式构建docker镜像 end -->
 		</plugins>
 	</build>
 

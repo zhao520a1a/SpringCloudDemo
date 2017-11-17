@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        healthCheckPath: /health   # Eureka的健康指示器
+        healthCheckInterval: 15ms
+        instance-id: consul-miya
+  application:
+    name: consul-miya
+server:
+  port: 8890
+
+
+
+
+
+
+

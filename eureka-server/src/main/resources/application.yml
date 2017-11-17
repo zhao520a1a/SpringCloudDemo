@@ -23,11 +23,15 @@ server:
 eureka:
   instance:
     hostname: 127.0.0.1
-
+    status-page-url: ${management.context-path}/info  #Eureka的状态页
+    health-check-url: ${management.context-path}/health   #Eureka的健康指示器
   client:
     serviceUrl:
 #      defaultZone: http://127.0.0.1:8889/eureka/   #高可用方案，向对方请求：两台对等EurekaServer
-      defaultZone: http://127.0.0.1:8888/eureka/   #自己
+      defaultZone: http://127.0.0.1:8888/eureka/
+management:
+  context-path: /golden  #自己
+
 
 #---
 ##高可用的服务注册中心:2个服务中心，相互感应，当有服务注册时，两个Eureka-eserver是对等的，它们都存有相同的信息，这就是通过服务器的冗余来增加可靠性，
