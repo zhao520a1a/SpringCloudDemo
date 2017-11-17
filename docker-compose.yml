@@ -1,0 +1,16 @@
+#默认文件
+#使用up命令，编排镜像的启动 : docker-compose -f docker-compose.yml up
+
+version: '3'
+services:
+  eureka-server:
+    image: golden/eureka-server
+    restart: always
+    ports:
+      - 8888:8888
+
+  eureka-client:
+    image: golden/eureka-client
+    restart: always
+    ports:
+      - 8801:8801
